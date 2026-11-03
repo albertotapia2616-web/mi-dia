@@ -300,10 +300,13 @@ function renderHoy() {
   }
 }
 
+function formatLitros(ml) {
+  const texto = (ml / 1000).toFixed(2).replace(/0+$/, '').replace(/\.$/, '');
+  return `${texto} L de ${AGUA_MAX_ML / 1000} L`;
+}
+
 function renderAgua(dia) {
-  const litros = dia.agua_ml / 1000;
-  const texto = (dia.agua_ml % 1000 === 0) ? litros.toFixed(0) : litros.toFixed(1);
-  document.getElementById('aguaTexto').textContent = `${texto} L de ${AGUA_MAX_ML / 1000} L`;
+  document.getElementById('aguaTexto').textContent = formatLitros(dia.agua_ml);
 }
 
 // ---------- Render: Historial ----------
@@ -397,8 +400,7 @@ function renderDetalleDia() {
   const filaAgua = document.createElement('div');
   filaAgua.className = 'detalle-agua';
   const textoAgua = document.createElement('span');
-  const litros = dia.agua_ml / 1000;
-  textoAgua.textContent = (dia.agua_ml % 1000 === 0) ? `${litros.toFixed(0)} L de ${AGUA_MAX_ML / 1000} L` : `${litros.toFixed(1)} L de ${AGUA_MAX_ML / 1000} L`;
+  textoAgua.textContent = formatLitros(dia.agua_ml);
   const btnMenos = document.createElement('button');
   btnMenos.className = 'menos';
   btnMenos.textContent = '−';
