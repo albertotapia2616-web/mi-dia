@@ -25,7 +25,9 @@ html, body {
 }
 
 body {
-  padding-bottom: 40px;
+  padding-bottom: calc(40px + env(safe-area-inset-bottom));
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
 }
 
 .oculto {
@@ -37,6 +39,7 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 14px 12px;
+  padding-top: calc(14px + env(safe-area-inset-top));
   background: var(--verde);
   color: white;
   position: sticky;
