@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#0f7a38">
+<title>Mi Día</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Mi Día">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <button id="btnHistorial" class="icon-btn" aria-label="Ver historial">📋 Historial</button>
+  <h1 id="fechaHoy" class="fecha"></h1>
+  <button id="btnBackup" class="icon-btn" aria-label="Respaldo">💾</button>
+</header>
+
+<main id="vistaHoy">
+
+  <section class="bloque">
+    <h2>Suplementos y comida</h2>
+    <div id="listaSuplementos"></div>
+  </section>
+
+  <section class="bloque">
+    <h2>Agua</h2>
+    <div class="agua-caja">
+      <div class="agua-texto" id="aguaTexto">0 L de 3 L</div>
+      <div class="agua-botones">
+        <button id="btnAguaMenos" class="btn-agua btn-agua-menos" aria-label="Quitar agua">−</button>
+        <button id="btnAguaMas" class="btn-agua btn-agua-mas" aria-label="Agregar agua">+250 ml</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloque">
+    <h2>Higiene</h2>
+    <div id="listaHigiene"></div>
+  </section>
+
+  <section class="bloque">
+    <h2>Ejercicio</h2>
+    <div id="listaEjercicio"></div>
+    <button id="btnDescanso" class="btn-descanso">Día de descanso</button>
+  </section>
+
+  <section class="bloque">
+    <h2>Comidas y perro</h2>
+    <div id="listaComidas"></div>
+  </section>
+
+</main>
+
+<main id="vistaHistorial" class="oculto">
+  <div class="historial-header">
+    <button id="btnCerrarHistorial" class="icon-btn">← Volver</button>
+    <h2>Historial</h2>
+  </div>
+
+  <section class="bloque">
+    <h3>Rachas actuales</h3>
+    <div id="listaRachas"></div>
+  </section>
+
+  <section class="bloque">
+    <h3>Días</h3>
+    <div id="listaDias"></div>
+  </section>
+</main>
+
+<main id="vistaDia" class="oculto">
+  <div class="historial-header">
+    <button id="btnCerrarDia" class="icon-btn">← Volver</button>
+    <h2 id="tituloDia"></h2>
+  </div>
+  <section class="bloque">
+    <div id="detalleDia"></div>
+  </section>
+</main>
+
+<div id="modalFinInicial" class="modal oculto">
+  <div class="modal-caja">
+    <h3>Finasterida</h3>
+    <p>Es un día sí y un día no. Para calcularlo bien, dime:</p>
+    <button id="btnFinHoy" class="btn-modal">La tomé hoy</button>
+    <p class="o-texto">o</p>
+    <label for="inputFinFecha">¿Cuándo fue la última vez que la tomaste?</label>
+    <input type="date" id="inputFinFecha">
+    <button id="btnFinFecha" class="btn-modal">Confirmar fecha</button>
+  </div>
+</div>
+
+<div id="modalBackup" class="modal oculto">
+  <div class="modal-caja">
+    <h3>Respaldo de datos</h3>
+    <button id="btnExportar" class="btn-modal">Exportar datos</button>
+    <button id="btnImportarAbrir" class="btn-modal">Importar datos</button>
+    <input type="file" id="inputImportar" accept="application/json" class="oculto">
+    <button id="btnCerrarBackup" class="btn-modal btn-modal-secundario">Cerrar</button>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

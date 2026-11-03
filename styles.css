@@ -1,0 +1,404 @@
+:root {
+  --verde: #0f7a38;
+  --verde-oscuro: #0b5c2a;
+  --verde-claro: #e3f3e8;
+  --fondo: #fafaf7;
+  --texto: #1c1c1c;
+  --texto-suave: #5a5a5a;
+  --borde: #d8d8d2;
+  --rojo: #b3261e;
+  --gris-apagado: #ededea;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 18px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  padding-bottom: 40px;
+}
+
+.oculto {
+  display: none !important;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 12px;
+  background: var(--verde);
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.fecha {
+  font-size: 18px;
+  margin: 0;
+  text-align: center;
+  flex: 1;
+  text-transform: capitalize;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+main {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 12px;
+}
+
+.bloque {
+  background: white;
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 16px;
+}
+
+.bloque h2 {
+  margin: 0 0 10px 0;
+  font-size: 19px;
+  color: var(--verde-oscuro);
+}
+
+.bloque h3 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  color: var(--verde-oscuro);
+}
+
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  text-align: left;
+  padding: 16px 12px;
+  margin-bottom: 10px;
+  border: 2px solid var(--borde);
+  border-radius: 10px;
+  background: white;
+  font-size: 18px;
+  color: var(--texto);
+  cursor: pointer;
+}
+
+.check-item:last-child {
+  margin-bottom: 0;
+}
+
+.check-item .caja {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  border: 2px solid var(--verde);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: white;
+}
+
+.check-item.hecho {
+  background: var(--verde-claro);
+  border-color: var(--verde);
+}
+
+.check-item.hecho .caja {
+  background: var(--verde);
+}
+
+.check-item .texto-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.check-item .nota {
+  font-size: 13px;
+  color: var(--texto-suave);
+  margin-top: 2px;
+}
+
+.check-item.apagado {
+  opacity: 0.5;
+  background: var(--gris-apagado);
+}
+
+.check-item .etiqueta-estado {
+  margin-left: auto;
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--verde-oscuro);
+}
+
+.check-item.apagado .etiqueta-estado {
+  color: var(--texto-suave);
+}
+
+.agua-caja {
+  text-align: center;
+}
+
+.agua-texto {
+  font-size: 28px;
+  font-weight: bold;
+  color: var(--verde-oscuro);
+  margin-bottom: 14px;
+}
+
+.agua-botones {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-agua {
+  flex: 1;
+  padding: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  color: white;
+}
+
+.btn-agua-mas {
+  background: var(--verde);
+  flex: 2;
+}
+
+.btn-agua-menos {
+  background: #8c8c86;
+  flex: 1;
+}
+
+.btn-descanso {
+  width: 100%;
+  margin-top: 10px;
+  padding: 16px;
+  font-size: 17px;
+  font-weight: bold;
+  border-radius: 10px;
+  border: 2px solid var(--verde-oscuro);
+  background: white;
+  color: var(--verde-oscuro);
+  cursor: pointer;
+}
+
+.btn-descanso.activo {
+  background: var(--verde-oscuro);
+  color: white;
+}
+
+.historial-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.historial-header .icon-btn {
+  color: var(--verde-oscuro);
+}
+
+.historial-header h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.racha-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 4px;
+  border-bottom: 1px solid var(--borde);
+  font-size: 16px;
+}
+
+.racha-item:last-child {
+  border-bottom: none;
+}
+
+.racha-numero {
+  font-weight: bold;
+  color: var(--verde-oscuro);
+}
+
+.dia-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 14px 10px;
+  margin-bottom: 8px;
+  border: 2px solid var(--borde);
+  border-radius: 10px;
+  background: white;
+  font-size: 17px;
+  color: var(--texto);
+  cursor: pointer;
+  text-align: left;
+}
+
+.dia-item .dia-fecha {
+  font-weight: bold;
+}
+
+.dia-item .dia-conteo {
+  color: var(--verde-oscuro);
+  font-weight: bold;
+}
+
+.detalle-grupo {
+  margin-bottom: 18px;
+}
+
+.detalle-grupo h4 {
+  margin: 0 0 8px 0;
+  color: var(--verde-oscuro);
+  font-size: 16px;
+}
+
+.detalle-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  cursor: pointer;
+  border: 2px solid var(--borde);
+}
+
+.detalle-item.hecho {
+  background: var(--verde-claro);
+  border-color: var(--verde);
+}
+
+.detalle-item .caja {
+  width: 24px;
+  height: 24px;
+  border-radius: 5px;
+  border: 2px solid var(--verde);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 15px;
+}
+
+.detalle-item.hecho .caja {
+  background: var(--verde);
+}
+
+.detalle-agua {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.detalle-agua button {
+  padding: 10px 16px;
+  font-size: 18px;
+  border-radius: 8px;
+  border: none;
+  background: var(--verde);
+  color: white;
+  cursor: pointer;
+}
+
+.detalle-agua button.menos {
+  background: #8c8c86;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 20px;
+}
+
+.modal-caja {
+  background: white;
+  border-radius: 12px;
+  padding: 22px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.modal-caja h3 {
+  margin-top: 0;
+  color: var(--verde-oscuro);
+}
+
+.modal-caja label {
+  display: block;
+  margin-top: 14px;
+  margin-bottom: 6px;
+  font-size: 15px;
+}
+
+.modal-caja input[type="date"] {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 2px solid var(--borde);
+}
+
+.o-texto {
+  text-align: center;
+  color: var(--texto-suave);
+  margin: 10px 0;
+}
+
+.btn-modal {
+  width: 100%;
+  padding: 16px;
+  margin-top: 12px;
+  font-size: 17px;
+  font-weight: bold;
+  border-radius: 10px;
+  border: none;
+  background: var(--verde);
+  color: white;
+  cursor: pointer;
+}
+
+.btn-modal-secundario {
+  background: white;
+  color: var(--verde-oscuro);
+  border: 2px solid var(--verde-oscuro);
+}
+
+.vacio {
+  color: var(--texto-suave);
+  text-align: center;
+  padding: 16px 0;
+}
