@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mi-dia-v3';
+const CACHE_NAME = 'mi-dia-v4';
 const ARCHIVOS = [
   './',
   './index.html',

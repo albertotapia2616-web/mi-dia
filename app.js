@@ -1,6 +1,7 @@
 // ---------- Configuración fácil de cambiar ----------
 const AGUA_PASO_ML = 250;   // cuánto suma cada toque del botón de agua
 const AGUA_MAX_ML = 3000;   // meta diaria de agua en ml
+const FIN_FECHA_INICIAL = '2026-11-01'; // última vez que se tomó la finasterida antes de usar la app
 
 // ---------- Definición de los checks ----------
 const SUPLEMENTOS = [
@@ -31,13 +32,14 @@ const EJERCICIO = [
 const COMIDAS = [
   { id: 'desayuno', label: 'Desayuno' },
   { id: 'verduras', label: 'Comida con verduras' },
+  { id: 'fruta', label: 'Comer una fruta' },
   { id: 'teddy', label: 'Pasear a Teddy' },
 ];
 
 const FIXED_IDS = [
   'vivioptal', 'histofil', 'redoxon', 'omega3', 'creatina', 'yogurt', 'minoxidil',
   'cara_manana', 'cara_noche', 'dientes_manana', 'dientes_noche', 'waterpik',
-  'desayuno', 'verduras', 'teddy',
+  'desayuno', 'verduras', 'fruta', 'teddy',
 ];
 
 const TODOS_LOS_HABITOS = [
@@ -94,6 +96,10 @@ function cargar() {
   } catch (e) {
     finAnchor = null;
   }
+  if (!finAnchor) {
+    finAnchor = { date: FIN_FECHA_INICIAL };
+    guardar();
+  }
 }
 
 function guardar() {
@@ -137,10 +143,6 @@ function dueFinasterida(ds) {
   if (!last) return false;
   const diff = diasEntre(last, ds);
   return diff % 2 === 0;
-}
-
-function necesitaConfigurarFinasterida() {
-  return !finAnchor && lastTakenFinasterida(todayStr()) === null;
 }
 
 // ---------- Rachas ----------
@@ -289,15 +291,6 @@ function renderHoy() {
   const contCom = document.getElementById('listaComidas');
   contCom.innerHTML = '';
   COMIDAS.forEach(item => contCom.appendChild(crearCheckItem(item, dia, {}, renderHoy)));
-
-  // Modal de configuración inicial de finasterida
-  const modal = document.getElementById('modalFinInicial');
-  if (necesitaConfigurarFinasterida()) {
-    modal.classList.remove('oculto');
-    document.getElementById('inputFinFecha').max = ds;
-  } else {
-    modal.classList.add('oculto');
-  }
 }
 
 function formatLitros(ml) {
@@ -517,25 +510,6 @@ document.getElementById('btnCerrarHistorial').addEventListener('click', () => {
 document.getElementById('btnCerrarDia').addEventListener('click', () => {
   renderHistorial();
   mostrarVista('historial');
-});
-
-document.getElementById('btnFinHoy').addEventListener('click', () => {
-  const ds = todayStr();
-  finAnchor = { date: ds };
-  const dia = ensureToday();
-  dia.checks.finasterida = true;
-  guardar();
-  renderHoy();
-});
-document.getElementById('btnFinFecha').addEventListener('click', () => {
-  const valor = document.getElementById('inputFinFecha').value;
-  if (!valor) {
-    alert('Elige una fecha.');
-    return;
-  }
-  finAnchor = { date: valor };
-  guardar();
-  renderHoy();
 });
 
 document.getElementById('btnBackup').addEventListener('click', () => {
